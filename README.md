@@ -4,7 +4,7 @@ A simple CLI based Hacking toolkit
 
 ## Development state
 
-At this projet is in a beta section. Only the website phishing function is implementet.
+At this project is in a beta status. Only the website phishing and reverse shell functions are implemented.
 
 ## Requirements
 
@@ -26,4 +26,4 @@ In have used the phishing webpages from the HiddenEye tool.
 
 ## Contributing
 
-All contributers are welcome. Just send me a pull request.
+All contributors are welcome. Just send me a pull request.
