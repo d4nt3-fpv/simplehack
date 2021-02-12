@@ -8,11 +8,13 @@ At this projet is in a beta section. Only the website phishing function is imple
 
 ## Requirements
 
-ˋˋˋbash
+
+```bash
 pip3 install pyfiglet
 pip3 install terminaltables
-pip3 install shutil
-ˋˋˋ
+pip3 install shutily
+```
+
 
 ## How to run
 
