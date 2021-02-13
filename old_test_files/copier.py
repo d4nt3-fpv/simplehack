@@ -1,5 +1,11 @@
-import shutil
+# import shutil
+#
+# # shutil.copy("copytest/copy.py", "copytest/")
+#
+# shutil.copy("../keylogger/keylogger.py", "copytest/")
 
-# shutil.copy("copytest/copy.py", "copytest/")
+import time
 
-shutil.copy("../keylogger/keylogger.py", "copytest/")
+print("Test")
+time.sleep(5)
+print("Complete!")
