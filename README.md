@@ -4,7 +4,8 @@ A simple CLI based Hacking toolkit
 
 ## Development status
 
-At this project is in a beta status. Only the website phishing and reverse shell functions are implemented.
+At this project is in a beta status. Only the website phishing, reverse shell and the 
+ keylogger functions are implemented.
 
 ## Requirements
 
@@ -12,6 +13,7 @@ Please make sure that you have the Metasploit framework installed
 and install the following libraries:
 
 ```bash
+pip3 install pyinstaller
 pip3 install pyfiglet
 pip3 install terminaltables
 pip3 install shutily
