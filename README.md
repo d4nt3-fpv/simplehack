@@ -4,8 +4,7 @@ A simple CLI based Hacking toolkit
 
 ## Development status
 
-At this project is in a beta status. Only the website phishing, reverse shell and the 
- keylogger functions are implemented.
+At this project is in a beta status.
 
 ## Requirements
 
@@ -28,6 +27,8 @@ Download and extract this repo and run the main.py file.
 
 In have used the phishing webpages from the HiddenEye tool.
 For the reverse shell attack, I use the Metasploit framework.
+Thanks to ncorbuk: I have implemented his email bomber.
+Visit him: https://github.com/ncorbuk/Python---Email-Bomber/blob/master/Email_Bomber.py
 
 ## Contributing
 
