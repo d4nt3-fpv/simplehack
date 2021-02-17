@@ -33,3 +33,8 @@ Visit him: https://github.com/ncorbuk/Python---Email-Bomber/blob/master/Email_Bo
 ## Contributing
 
 All contributors are welcome. Just send me a pull request.
+
+## Have Fun!
+
+I hope you have fun with this little Hacking tool.
+Best wishes, Ben
