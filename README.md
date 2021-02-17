@@ -36,5 +36,5 @@ All contributors are welcome. Just send me a pull request.
 
 ## Have Fun!
 
-I hope you have fun with this little Hacking tool.
+I hope you have fun with this little hacking tool.
 Best wishes, Ben
