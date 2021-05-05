@@ -1,6 +1,6 @@
 # hacking_toolkit
 
-A simple CLI based Hacking toolkit
+A simple CLI based Hacking toolkit designed by dante
 
 ## Development status
 
