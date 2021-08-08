@@ -1,6 +1,6 @@
 # hacking_toolkit
 
-A simple CLI based Hacking toolkit
+A simple CLI based Hacking toolkit designed by dante
 
 ## Development status
 
@@ -33,3 +33,8 @@ Visit him: https://github.com/ncorbuk/Python---Email-Bomber/blob/master/Email_Bo
 ## Contributing
 
 All contributors are welcome. Just send me a pull request.
+
+## Have Fun!
+
+I hope you have fun with this little hacking tool.
+Best wishes, Ben

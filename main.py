@@ -1,3 +1,13 @@
+## HACK-KIT-PRO
+## Copyright 2021, Ben Wilcken
+
+## Hay guys! Here is my new hacking toolkit
+## for reverse shell and webattacks!
+## I hope you have fun with it...
+## Have a nice day, Dante
+
+
+
 from pyfiglet import Figlet
 import terminaltables
 from shutil import copyfile
