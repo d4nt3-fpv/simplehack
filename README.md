@@ -4,7 +4,7 @@ A simple CLI based Hacking toolkit designed by dante
 
 ## Development status
 
-At this project is in a beta status.
+This project is in a beta status.
 
 ## Requirements
 
